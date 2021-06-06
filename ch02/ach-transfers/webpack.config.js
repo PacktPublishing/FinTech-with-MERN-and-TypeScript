@@ -7,35 +7,39 @@ module.exports = {
   watch: true,
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "achtranfers.js",
+    filename: "dist.js",
     chunkFilename: "[chunk].js",
   },
   module: {
     rules: [
       {
-        test: /.jsx?$/,
+        test: /\.(js|ts)x?$/,
         include: [
           path.resolve(__dirname, "src"),
-          path.resolve(__dirname, "dist"),
+          path.resolve(__dirname, "api")
         ],
         exclude: [
           path.resolve(__dirname, "node_modules"),
           path.resolve(__dirname, "coverage"),
           path.resolve(__dirname, "tools"),
+          path.resolve(__dirname, "build")
         ],
         loader: "babel-loader",
       },
     ],
   },
   resolve: {
-    extensions: [".json", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".json", ".js"],
   },
   devtool: "source-map",
   devServer: {
-    contentBase: path.join(__dirname, "/dist/"),
+    contentBase: path.join(__dirname, "dist"),
     inline: true,
     host: "localhost",
     port: 8080,
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html"
+    })]
+}

@@ -5,7 +5,6 @@
 /.vscode
 
 # testing
-/coverage
 /tools
 
 # production
